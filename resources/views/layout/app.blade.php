@@ -13,7 +13,7 @@
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    @include('components.css')
+    @include('layout.css')
 
     @yield('css')
 
@@ -21,14 +21,14 @@
 
 <body class="layout-light side-menu">
     <div class="mobile-author-actions"></div>
-    @include('components.header')
+    @include('layout.header')
     <main class="main-content">
-        @include('components.sidebar')
+        @include('layout.sidebar')
         <div class="contents">
             <div class="container-fluid mt-4">
                 @yield('content')
             </div>
-            @include('components.footer')
+            @include('layout.footer')
         </div>
     </main>
     <div id="overlayer">
@@ -45,7 +45,7 @@
     <div class="customizer-overlay"></div>
 
 
-    @include('components.scripts')
+    @include('layout.scripts')
     @yield('script')
 
 </body>

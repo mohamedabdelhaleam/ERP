@@ -41,18 +41,55 @@
                             "X-Requested-With": "XMLHttpRequest",
                             Accept: "application/json",
                         },
-                        body: JSON.stringify({
-                            is_active: isChecked,
-                        }),
                     })
-                        .then((response) => {
+                        .then(async (response) => {
                             if (!response.ok) {
-                                throw new Error("Network response was not ok");
+                                const contentType =
+                                    response.headers.get("content-type");
+                                const isJson =
+                                    contentType &&
+                                    contentType.includes("application/json");
+
+                                if (isJson) {
+                                    const err = await response.json();
+                                    throw new Error(
+                                        err.message ||
+                                            "Network response was not ok"
+                                    );
+                                } else {
+                                    throw new Error(
+                                        `Error ${response.status}: ${response.statusText}`
+                                    );
+                                }
                             }
                             return response.json();
                         })
                         .then((data) => {
                             if (data.success) {
+                                // Update badge text
+                                const label = toggleSwitch
+                                    .closest(".form-check")
+                                    .querySelector("label");
+                                const badge =
+                                    label.querySelector(".status-badge");
+
+                                if (badge) {
+                                    const isActive =
+                                        data.is_active !== undefined
+                                            ? data.is_active
+                                            : data.status === "active";
+
+                                    if (isActive) {
+                                        badge.textContent = "Active";
+                                        badge.className =
+                                            "badge bg-success status-badge";
+                                    } else {
+                                        badge.textContent = "Inactive";
+                                        badge.className =
+                                            "badge bg-danger status-badge";
+                                    }
+                                }
+
                                 // Show success notification
                                 if (typeof Swal !== "undefined") {
                                     Swal.fire({
@@ -148,7 +185,10 @@
 
     // Initialize on page load
     if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initializeStatusSwitchers);
+        document.addEventListener(
+            "DOMContentLoaded",
+            initializeStatusSwitchers
+        );
     } else {
         initializeStatusSwitchers();
     }

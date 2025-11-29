@@ -48,6 +48,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
     integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{{ asset('assets/js/delete-confirm.js') }}"></script>
 <style>
     /* Ensure SweetAlert2 displays above header */
     .swal2-container {
@@ -55,4 +56,4 @@
     }
 </style>
 <script src="{{ asset('dashboard/assets/js/ajax-delete.js') }}"></script>
-<script src="{{ asset('dashboard/assets/js/ajax-status-switcher.js') }}"></script>
+<script src="{{ asset('assets/js/ajax-status-switcher.js') }}"></script>

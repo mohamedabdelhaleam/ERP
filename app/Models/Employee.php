@@ -18,7 +18,7 @@ class Employee extends Model
         return $this->first_name . ' ' . $this->last_name;
     }
     
-
+    // scopes
     public function scopeActive($query)
     {
         return $query->where('status', 'active');
@@ -33,6 +33,21 @@ class Employee extends Model
     {
         return $query->where('status', 'terminated');
     }
+    // get count of active, inactive, terminated employees
+    public function getActiveCountAttribute()
+    {
+        return $this->where('status', 'active')->count();
+    }
+    public function getInactiveCountAttribute()
+    {
+        return $this->where('status', 'inactive')->count();
+    }
+    public function getTerminatedCountAttribute()
+    {
+        return $this->where('status', 'terminated')->count();
+    }
+    
+    // relationships
 
     public function department()
     {

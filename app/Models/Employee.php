@@ -8,6 +8,32 @@ class Employee extends Model
 {
     protected $guarded = [];
 
+    protected $casts = [
+        'birth_date' => 'date',
+        'hire_date' => 'date',
+    ];
+
+    public function fullName()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+    
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 'active');
+    }
+
+    public function scopeInactive($query)
+    {
+        return $query->where('status', 'inactive');
+    }
+
+    public function scopeTerminated($query)
+    {
+        return $query->where('status', 'terminated');
+    }
+
     public function department()
     {
         return $this->belongsTo(Department::class);

@@ -18,7 +18,7 @@
                 <div class="nav-flag-select__options">
                     <ul>
                         <li>
-                            <a href="#" class="d-flex align-items-center">
+                            <a href="{{ route('language.switch', 'en') }}" class="d-flex align-items-center">
                                 <img src="https://flagcdn.com/w20/gb.png" alt="English" class="rounded-circle me-2"
                                     style="width: 20px; height: 20px;">
                                 <span>{{ __('auth.english') }}</span>
@@ -28,7 +28,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="d-flex align-items-center">
+                            <a href="{{ route('language.switch', 'ar') }}" class="d-flex align-items-center">
                                 <img src="https://flagcdn.com/w20/sa.png" alt="Arabic" class="rounded-circle me-2"
                                     style="width: 20px; height: 20px;">
                                 <span>{{ __('auth.arabic') }}</span>

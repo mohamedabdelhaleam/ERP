@@ -9,5 +9,5 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('login', [LoginController::class, 'login'])->name('login');
 });
 Route::group(['middleware' => 'auth'], function () {
-    Route::post('logout', [LogoutController::class, 'logout'])->name('logout');
+    Route::post('logout', LogoutController::class)->name('logout');
 });
